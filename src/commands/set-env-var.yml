@@ -1,0 +1,27 @@
+parameters:
+  endpoint:
+    type: string
+    default: "https://checkip.amazonaws.com"
+    description: |
+      The external endpoint that will be used to retrieve the public IP of
+      the machine. This is expected to return _only_ the raw text
+      representing the IP address.
+  env-var-name:
+    type: env_var_name
+    default: IP_ADDRESS
+    description: |
+      The environment variable the IP address of the builder will be exposed
+      through.
+description: |
+  Sets the externally facing IP address of the current builder through an
+  environment variable accessible via subsequent steps.
+steps:
+  - run:
+      name: Fetch the IP address of the current executor
+      command: |
+        IP=$(wget -qO- <<parameters.endpoint>>)
+        if [[ "${IP}" == "" ]]; then
+          echo "Could not source the public IP for this executor"
+          exit 1
+        fi
+        echo "export <<parameters.env-var-name>>=$IP" >> $BASH_ENV

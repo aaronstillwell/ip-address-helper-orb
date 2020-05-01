@@ -1,14 +1,15 @@
 description: >
-  Sample example description.
-  # What will this example document?
-  # Descriptions should be short, simple, and clear.
+  Set the IP Address env var and print it to stdout
 usage:
   version: 2.1
   orbs:
-    foo: bar/foo@1.2.3
+    ip: aaronstillwell/ip-address-helper
   jobs:
     build:
-      machine: true
+      docker:
+        - image: circleci/node
       steps:
-        - foo/hello:
-            username: "Anna"
+        - ip/set-env-var
+        - run:
+            name: Print IP address to STDOUT
+            command: echo $IP_ADDRESS

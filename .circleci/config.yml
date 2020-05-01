@@ -95,7 +95,7 @@ workflows:
           publish-version-tag: true
           ssh-fingerprints: x
           requires:
-            - integration-test-1
+            - integration-tests
           filters:
             branches:
               only: master

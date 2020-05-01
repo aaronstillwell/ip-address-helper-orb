@@ -26,10 +26,8 @@ jobs:
       - run:
           name: Assert IP address is accessible
           command: |
-            IPV4_REGEX="^
-            (
-                  [0-9]{1,3} \. [0-9]{1,3} \. [0-9]{1,3} \. [0-9]{1,3}
-            )$"
+            echo ${IP_ADDRESS}
+            IPV4_REGEX="^([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})$"
 
             [[ $IP_ADDRESS =~ $IPV4_REGEX ]]
 

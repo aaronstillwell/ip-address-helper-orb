@@ -30,6 +30,13 @@ jobs:
             IPV4_REGEX="^([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})$"
 
             [[ $IP_ADDRESS =~ $IPV4_REGEX ]]
+      - ip-address-helper/set-env-var:
+          env-var-name: MY_IP
+      - run:
+          name: Assert custom env var name is set
+          command: |
+            echo ${MY_IP}
+            [[ $MY_IP == $IP_ADDRESS ]]
 
 workflows:
   # This `lint-pack_validate_publish-dev` workflow will run on any commit.

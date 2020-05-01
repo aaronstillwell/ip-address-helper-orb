@@ -22,16 +22,16 @@ jobs:
     executor: orb-tools/ubuntu
     steps:
       - checkout
-      # - ip-address-helper/set-env-var
-      # - run:
-      #     name: Assert IP address is accessible
-      #     command: |
-      #       IPV4_REGEX="^
-      #       (
-      #             [0-9]{1,3} \. [0-9]{1,3} \. [0-9]{1,3} \. [0-9]{1,3}
-      #       )$"
+      - ip-address-helper/set-env-var
+      - run:
+          name: Assert IP address is accessible
+          command: |
+            IPV4_REGEX="^
+            (
+                  [0-9]{1,3} \. [0-9]{1,3} \. [0-9]{1,3} \. [0-9]{1,3}
+            )$"
 
-      #       [[ $IP_ADDRESS =~ $IPV4_REGEX ]]
+            [[ $IP_ADDRESS =~ $IPV4_REGEX ]]
 
 workflows:
   # This `lint-pack_validate_publish-dev` workflow will run on any commit.

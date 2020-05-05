@@ -93,9 +93,7 @@ workflows:
       - orb-tools/dev-promote-prod-from-commit-subject:
           orb-name: aaronstillwell/ip-address-helper
 
-          add-pr-comment: true
-          bot-token-variable: GH_BOT_USER_TOKEN
-          bot-user:
+          add-pr-comment: false
           fail-if-semver-not-indicated: true
           publish-version-tag: true
           ssh-fingerprints: x

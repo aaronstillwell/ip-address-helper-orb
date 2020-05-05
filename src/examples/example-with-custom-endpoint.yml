@@ -1,0 +1,21 @@
+description: >
+  Set the IP Address env var and print it to stdout, using a custom endpoint
+  to retrieve the IP.
+
+  This command needs to ping an external endpoint to retrieve its IP. When the
+  `endpoint` parameter is provided, this endpoint is fed directly into `wget`
+  and is expected to return the IP address in plain text as the response body.
+usage:
+  version: 2.1
+  orbs:
+    ip: aaronstillwell/ip-address-helper@1.0.0
+  jobs:
+    build:
+      docker:
+        - image: circleci/node
+      steps:
+        - ip/set-env-var:
+            endpoint: https://api.ipify.org
+        - run:
+            name: Print IP address to STDOUT
+            command: echo $IP_ADDRESS

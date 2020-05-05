@@ -1,5 +1,5 @@
 description: >
-  Set the IP Address env var and print it to stdout
+  Set the IP Address in a custom environment variable.
 usage:
   version: 2.1
   orbs:
@@ -9,7 +9,8 @@ usage:
       docker:
         - image: circleci/node
       steps:
-        - ip/set-env-var
+        - ip/set-env-var:
+            env-var-name: EXTERNAL_IP
         - run:
             name: Print IP address to STDOUT
-            command: echo $IP_ADDRESS
+            command: echo $EXTERNAL_IP
